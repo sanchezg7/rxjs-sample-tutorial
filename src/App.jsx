@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import SquareNumbers from "./SquaredNumbers";
 import SquareNumbersWithFilter from "./SquareNumbersWithFilter";
+import SquareNumbersWithFilterWithTimer from "./SquareNumbersWithFilterWithTimer";
 
 const Home = () => {
     useEffect(() => {}, []);
@@ -27,6 +28,10 @@ function App() {
                     <Route
                         path="/squareNumbers/withFilter"
                         element={<SquareNumbersWithFilter />}
+                    />
+                    <Route
+                        path="/squareNumbers/withFilter/withTimer"
+                        element={<SquareNumbersWithFilterWithTimer />}
                     />
                     <Route element={<NotFound />} default />
                 </Routes>
