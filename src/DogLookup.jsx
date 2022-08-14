@@ -1,4 +1,11 @@
 import React, { useEffect, useState } from "react";
+import {
+    BehaviorSubject,
+    debounceTime,
+    distinctUntilChanged,
+    from,
+} from "rxjs";
+import { filter, mergeMap } from "rxjs/operators";
 
 const getDogsByBreed = async (searchBreed) => {
     const { message: dogBreeds } = await fetch(
@@ -7,20 +14,39 @@ const getDogsByBreed = async (searchBreed) => {
     return dogBreeds.filter((breed) => breed.includes(searchBreed));
 };
 
-const DogLookup = () => {
-    const [currentNumber, setCurrentNumber] = useState(0);
+const useObservable = (observable, onItemReceived) => {
+    useEffect(() => {
+        let subscription = observable.subscribe((item) => {
+            onItemReceived(item);
+        });
+        return () => subscription.unsubscribe();
+    }, [observable, onItemReceived]);
+};
 
-    // useEffect(() => {
-    // To consume an observable, subscribe.
-    // let subscription = squareNumbers.subscribe((result) => {
-    //     setCurrentNumber(result);
-    //     console.log(result);
-    // });
-    // return () => subscription.unsubscribe();
-    // }, []);
+// producer
+let searchTermSubject = new BehaviorSubject("");
+// consumer
+let searchTermObservable = searchTermSubject.pipe(
+    // don't shoot a request of empty term
+    filter((val) => val.length > 1),
+    // allow the user to finish typing before shooting a network request
+    debounceTime(750),
+    // avoid making the same search prior to the last if it hasn't changed
+    distinctUntilChanged(),
+    // make a new observable out of the promise resolved from network call
+    mergeMap((val) => from(getDogsByBreed(val)))
+);
+
+const DogLookup = () => {
+    const [searchResults, setSearchResults] = useState([]);
+
+    useObservable(searchTermObservable, setSearchResults);
     const [searchBreedTerm, setSearchBreedTerm] = useState("");
     const handleSearchChange = (e) => {
-        setSearchBreedTerm(e.target.value);
+        const newSearchTerm = e.target.value;
+        setSearchBreedTerm(newSearchTerm);
+        // emit on the subject (the producer)
+        searchTermSubject.next(newSearchTerm);
     };
     return (
         <div className="App">
@@ -31,6 +57,8 @@ const DogLookup = () => {
                 value={searchBreedTerm}
                 onChange={handleSearchChange}
             />
+            <p>Results:</p>
+            <div>{JSON.stringify(searchResults, null, 2)}</div>
         </div>
     );
 };
