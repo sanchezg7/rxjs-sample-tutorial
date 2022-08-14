@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
 import SquareNumbers from "./SquaredNumbers";
+import SquareNumbersWithFilter from "./SquareNumbersWithFilter";
 
 const Home = () => {
     useEffect(() => {}, []);
@@ -23,6 +24,10 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/squareNumbers" element={<SquareNumbers />} />
+                    <Route
+                        path="/squareNumbers/withFilter"
+                        element={<SquareNumbersWithFilter />}
+                    />
                     <Route element={<NotFound />} default />
                 </Routes>
             </BrowserRouter>
