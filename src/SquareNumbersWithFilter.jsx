@@ -9,6 +9,7 @@ let squareNumbers = numbersObservable
     .pipe(
         // only items meeting criteria can continue in the pipe
         filter((val) => val > 2),
+        // add a projection to the item in the pipe
         map((val) => val * val)
     );
 
