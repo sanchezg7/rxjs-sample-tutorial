@@ -4,6 +4,7 @@ import "./App.css";
 import SquareNumbers from "./SquaredNumbers";
 import SquareNumbersWithFilter from "./SquareNumbersWithFilter";
 import SquareNumbersWithFilterWithTimer from "./SquareNumbersWithFilterWithTimer";
+import DogLookup from "./DogLookup";
 
 const Home = () => {
     useEffect(() => {}, []);
@@ -34,6 +35,7 @@ function App() {
                         element={<SquareNumbersWithFilterWithTimer />}
                     />
                     <Route element={<NotFound />} default />
+                    <Route path="/dog" element={<DogLookup />} />
                 </Routes>
             </BrowserRouter>
         </>
