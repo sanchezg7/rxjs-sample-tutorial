@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { from } from "rxjs";
 import { map, filter, delay, mergeMap } from "rxjs/operators";
+import ReactEmbedGist from "react-embed-gist/src/ReactEmbedGist";
 
 let numbersObservable = from([1, 2, 3, 4, 5]);
 
@@ -17,17 +18,6 @@ const SquareNumbersWithFilter = () => {
     const [currentNumber, setCurrentNumber] = useState(0);
 
     useEffect(() => {
-        document.head.append(
-            '<script id="snippet" src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2Fsanchezg7%2Frxjs-sample-tutorial%2Fblob%2F99bb2ad9f255c9f1f8c86a0f03088de048f4cf18%2Fsrc%2FSquareNumbersWithFilterWithTimer.jsx%23L7-L20&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on"></script>'
-        );
-
-        return () => {
-            const codeSnippet = document.getElementById("snippet");
-            codeSnippet.remove();
-        };
-    }, []);
-
-    useEffect(() => {
         // To consume an observable, subscribe.
         let subscription = squareNumbers.subscribe((result) => {
             setCurrentNumber(result);
@@ -37,8 +27,10 @@ const SquareNumbersWithFilter = () => {
     }, []);
     return (
         <div className="App">
-            <h1>RxJS Counter</h1>
+            <h1>Map & Filter</h1>
+            <h2>Use case: Square numbers when greater than 2</h2>
             <p>Current number is: {currentNumber}</p>
+            <ReactEmbedGist gist="sanchezg7/070ce9c4f9d98107b18455379d01923c" />
         </div>
     );
 };

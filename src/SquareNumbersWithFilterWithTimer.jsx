@@ -33,9 +33,12 @@ const SquareNumbersWithFilterWithTimer = () => {
     }, []);
     return (
         <div className="App">
-            <h1>Emit Squared Numbers With Delay</h1>
+            <h1>Map & Filter & MergeMap</h1>
+            <h2>
+                Squared Numbers when greater than two and with respective delay
+            </h2>
             <p>Current number is: {currentNumber}</p>
-            <ReactEmbedGist gist="sanchezg7/f9661417f6d7c2c3e53bfbd1766489b5" />
+            <ReactEmbedGist gist="sanchezg7/e5639790c8261abbe1e4a6ce7a079e8a" />
         </div>
     );
 };
