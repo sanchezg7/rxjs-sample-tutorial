@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import SquareNumbers from "./SquaredNumbers";
 import SquareNumbersWithFilter from "./SquareNumbersWithFilter";
@@ -10,7 +10,16 @@ const Home = () => {
     useEffect(() => {}, []);
     return (
         <div className="App">
-            <input type="text" placeholder="Search" />
+            <h1>rxjs-sample-tutorial</h1>
+            <div style={{ display: "flex", flexDirection: "column" }}>
+                <Link to="/squareNumbers">Square Numbers</Link>
+                <Link to="/squareNumbers/withFilter">
+                    Square Numbers with Filter
+                </Link>
+                <Link to="/squareNumbers/withFilter/withTimer">
+                    Squared numbers with filter with timer
+                </Link>
+            </div>
         </div>
     );
 };
@@ -22,7 +31,7 @@ const NotFound = () => {
 function App() {
     return (
         <>
-            <BrowserRouter>
+            <HashRouter hashType="slash">
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/squareNumbers" element={<SquareNumbers />} />
@@ -37,7 +46,7 @@ function App() {
                     <Route element={<NotFound />} default />
                     <Route path="/dog" element={<DogLookup />} />
                 </Routes>
-            </BrowserRouter>
+            </HashRouter>
         </>
     );
 }

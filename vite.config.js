@@ -4,6 +4,9 @@ import react from "@vitejs/plugin-react";
 // https://vitejs.dev/config/
 export default defineConfig({
     base: "/rxjs-sample-tutorial/",
+    build: {
+        outDir: "./docs",
+    },
     server: {
         watch: {
             // limitation of WSL2 - https://vitejs.dev/config/#server-watch
