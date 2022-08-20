@@ -17,6 +17,17 @@ const SquareNumbersWithFilter = () => {
     const [currentNumber, setCurrentNumber] = useState(0);
 
     useEffect(() => {
+        document.head.append(
+            '<script id="snippet" src="https://emgithub.com/embed.js?target=https%3A%2F%2Fgithub.com%2Fsanchezg7%2Frxjs-sample-tutorial%2Fblob%2F99bb2ad9f255c9f1f8c86a0f03088de048f4cf18%2Fsrc%2FSquareNumbersWithFilterWithTimer.jsx%23L7-L20&style=github&showBorder=on&showLineNumbers=on&showFileMeta=on&showCopy=on"></script>'
+        );
+
+        return () => {
+            const codeSnippet = document.getElementById("snippet");
+            codeSnippet.remove();
+        };
+    }, []);
+
+    useEffect(() => {
         // To consume an observable, subscribe.
         let subscription = squareNumbers.subscribe((result) => {
             setCurrentNumber(result);

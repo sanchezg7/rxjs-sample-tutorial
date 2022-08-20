@@ -32,6 +32,9 @@ function App() {
     return (
         <>
             <HashRouter hashType="slash">
+                <div className="App-header">
+                    <Link to="/">RxJS Counter</Link>
+                </div>
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/squareNumbers" element={<SquareNumbers />} />

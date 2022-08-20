@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { from } from "rxjs";
 import { map, filter, delay, mergeMap } from "rxjs/operators";
+import ReactEmbedGist from "react-embed-gist/src/ReactEmbedGist";
 
 let numbersObservable = from([1, 2, 3, 4, 5]);
 
@@ -32,8 +33,9 @@ const SquareNumbersWithFilterWithTimer = () => {
     }, []);
     return (
         <div className="App">
-            <h1>RxJS Counter</h1>
+            <h1>Emit Squared Numbers With Delay</h1>
             <p>Current number is: {currentNumber}</p>
+            <ReactEmbedGist gist="sanchezg7/f9661417f6d7c2c3e53bfbd1766489b5" />
         </div>
     );
 };
