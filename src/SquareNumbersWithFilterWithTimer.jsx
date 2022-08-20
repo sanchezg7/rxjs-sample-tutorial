@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { from } from "rxjs";
 import { map, filter, delay, mergeMap } from "rxjs/operators";
-import ReactEmbedGist from "react-embed-gist/src/ReactEmbedGist";
+import ReactEmbedGist from "react-embed-gist";
 
 let numbersObservable = from([1, 2, 3, 4, 5]);
 

@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+// this is required only for the react-embed-gist. consider making own component that doesn't require this.
+import "regenerator-runtime";
 import { HashRouter, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import SquareNumbers from "./SquaredNumbers";
